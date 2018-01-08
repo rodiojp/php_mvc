@@ -1,3 +1,10 @@
+# prevent access to a specific file .git-ftp.log 
+<files .git-ftp.log>
+order allow,deny
+deny from all
+</files>
+
+
 # Redirect to public folder
 RewriteEngine On
 RewriteBase /
