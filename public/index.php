@@ -26,9 +26,9 @@ echo "</pre>";
 // Match the requested route
 $url = $_SERVER["QUERY_STRING"];
 if ($router->match($url)) {
-    // echo "<pre>";
+    echo "<pre>";
     var_dump($router->getParams());
-    // echo "</pre>";
+    echo "</pre>";
 } else {
     echo "No route found for URL '$url'";
 }

@@ -36,6 +36,7 @@ class Router {
     public function match($url)
     {
         echo "match('$url')";
+        /*
         foreach ($this->routes as $route => $params) {
         
         echo "<pre>";
@@ -46,6 +47,20 @@ class Router {
                 $this->params = $params;
                 return true;
             }
+        }
+        */
+        // Match to the fixed URL format /controller/action
+        $reg_exp = "/^(?P<controller>[a-z-]+)\/(?P<action>[a-z-]+)$/";
+        
+        if (preg_match($reg_exp, $url, $matches)) {
+            // Get named capchured group values
+            foreach ($matches as $key => $match) { 
+                if (is_string($key)) {
+                    $params[$key] = $match;
+                }
+            }
+            $this->params = $params;
+            return true;
         }
         return false;
     }
