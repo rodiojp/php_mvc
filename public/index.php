@@ -12,9 +12,31 @@ echo "Redirected URL = '" . $_SERVER["QUERY_STRING"] . "'";
 
 $router  = new Router();
 // Add the routes
-$router->add("",["controller" => "Home", "action" => "index"]);
-$router->add("posts",["controller" => "Posts", "action" => "index"]);
-$router->add("posts/new",["controller" => "Posts", "action" => "new"]);
+
+// http://mvc.test/
+// $route = '/^$/i' 
+// $parameter = ['controller' => 'home', 'action' => 'index']
+$router->add("",["controller" => "home", "action" => "index"]);
+// http://mvc.test/posts
+// $route = '^$posts/i' 
+// $parameter = ['controller' => 'Posts', 'action' => 'new']
+$router->add("posts",["controller" => "Posts", "action" => "new"]);
+/* 
+ * Excluded:
+ * $router->add("posts/new",["controller" => "Posts", "action" => "new"]); 
+ */
+// http://mvc.test/account/register
+// $route = '^(?P<controller>[a-z-]+)\/(?P<action>[a-z-]+)$/i'
+// $parameter = ['controller' => 'account', 'action' => 'register']
+$router->add("{controller}/{action}");
+// http://mvc.test/account/123/register
+// $route = '^(?P<controller>[a-z-]+)\/(?P<id>\d+)\/(?P<action>[a-z-]+)$/i'
+// $parameter = ['controller' => 'account', 'id' => '126', 'action' => 'register']
+$router->add("{controller}/{id:\d+}/{action}");
+// http://mvc.test/admin/account/register
+// $route = '^admin\/(?P<controller>[a-z-]+)\/(?P<action>[a-z-]+)$/i'
+// $parameter = ['controller' => 'account', 'action' => 'register']
+$router->add("admin/{controller}/{action}");
 
 // Dispay the routing table
 echo "<pre>";
