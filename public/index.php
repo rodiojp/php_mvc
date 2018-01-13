@@ -36,6 +36,10 @@ $router->add("{controller}/{action}");
 // $route = '^(?P<controller>[a-z-]+)\/(?P<id>\d+)\/(?P<action>[a-z-]+)$/i'
 // $parameter = ['controller' => 'account', 'id' => '126', 'action' => 'register']
 $router->add("{controller}/{id:\d+}/{action}");
+// http://mvc.test/admin/users/index
+// $route = '/^admin\/(?P<controller>[a-z-]+)\/(?P<action>[a-z-]+)$/i'
+// $parameter = ['controller' => 'account', 'action' => 'register']
+$router->add("admin/{controller}/{action}", ["namespace" => "Admin"]);
 /* 
 // Dispay the routing table
 echo "<pre>";

@@ -5,16 +5,16 @@ PHP 7.1
 */
 namespace App\Controllers;
 
-class Posts
+class Posts extends \Core\Controller
 {
     /*
     *  Show the index page
     *
     *  @return void
     */
-    public function index()
+    public function indexAction()
     {
-        echo "Hello from Index() method of Posts controller ";
+        echo "Hello from Index() action method of Posts controller ";
     }
 
     /*
@@ -22,8 +22,21 @@ class Posts
     *
     *  @return void
     */
-    public function addNew()
+    public function addNewAction()
     {
-        echo "Hello from AddNew() method of Posts controller ";
+        echo "Hello from AddNew() action method of Posts controller ";
+    }
+
+    /*
+    *  Show the edit page
+    *
+    *  @return void
+    */
+    public function editAction()
+    {
+        echo "Hello from edit() action method of Posts controller ";
+        echo "<p>Query string parameters: <pre>" . 
+        htmlspecialchars(print_r($this->route_params, true)) . 
+        "</pre></p>";
     }
 }

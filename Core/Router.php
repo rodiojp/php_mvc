@@ -99,14 +99,15 @@ class Router {
     public function dispatch($url)
     {
         $url = $this->removeQueryStringVariables($url);
-        
+
         if ($this->match($url)) {
             $controller = $this->params["controller"];
             $controller = $this->convertToStudlyCaps($controller);
-            $controller = "App\Controllers\\$controller";
+            // $controller = "App\Controllers\\$controller";
+            $controller = $this->getNamespace() . $controller;
             
             if (class_exists($controller)) {
-                $controller_object = new $controller();
+                $controller_object = new $controller($this->params);
                 $action = $this->params["action"];
                 $action = $this->convertToCamelCase($action);
                 if (is_callable([$controller_object, $action])) {
@@ -191,5 +192,19 @@ class Router {
         }
 
         return $url;
+    }
+    /* 
+    * Get the namespace for the controller class. The namespace defined in 
+    * the route parameters is added if present.
+    *
+    * @return string The request URL.
+    */
+    protected function getNamespace()
+    {
+        $namespace = "App\Controllers\\";
+        if (array_key_exists("namespace", $this->params)) {
+            $namespace .= $this->params["namespace"] . "\\";
+        }
+        return $namespace;
     }
 }
