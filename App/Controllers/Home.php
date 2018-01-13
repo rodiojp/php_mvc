@@ -5,6 +5,8 @@ PHP 7.1
 */
 namespace App\Controllers;
 
+use \Core\View;
+
 class Home extends \Core\Controller
 {
     /*
@@ -14,12 +16,13 @@ class Home extends \Core\Controller
     */
     public function indexAction()
     {
-        echo "Hello from Index() action method of Home controller ";
+        // echo "Hello from Index() action method of Home controller ";
        /*  
             echo "<p>Query string parameters: <pre>" . 
                 htmlspecialchars(print_r($_GET, true)) . 
                 "</pre></p>"; 
         */
+        View::render("Home/index.php");
     }
     /* 
     * Before filter - called before an action method
