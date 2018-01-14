@@ -39,5 +39,13 @@ class Home extends \Core\Controller
     {
         echo " (method after)";
     }
-
+    /*
+    *  Show the index page
+    *
+    *  @return void
+    */
+    public function escapeAction()
+    {
+        View::render("Home/escape.php");
+    }
 }
