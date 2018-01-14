@@ -22,14 +22,17 @@ class Home extends \Core\Controller
                 htmlspecialchars(print_r($_GET, true)) . 
                 "</pre></p>"; 
         */
-        View::render("Home/index.php");
+        View::render("Home/index.php",[
+         "name" => "Dave",
+         "colors" => ["red", "green", "blue"]
+        ]);
     }
     /* 
     * Before filter - called before an action method
     */
     protected function before()
     {
-        echo "(method before) ";
+        // echo "(method before) ";
         // return false;
     }
     /* 
@@ -37,7 +40,7 @@ class Home extends \Core\Controller
     */
     protected function after()
     {
-        echo " (method after)";
+        // echo " (method after)";
     }
     /*
     *  Show the index page

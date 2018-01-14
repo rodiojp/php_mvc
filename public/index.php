@@ -19,7 +19,7 @@ spl_autoload_register(function ($class){
 Routing
 */
 // require "../Core/Router.php";
-echo "Redirected URL = '" . $_SERVER["QUERY_STRING"] . "'";
+// echo "Redirected URL = '" . $_SERVER["QUERY_STRING"] . "'";
 
 $router  = new Core\Router();
 // Add the routes
